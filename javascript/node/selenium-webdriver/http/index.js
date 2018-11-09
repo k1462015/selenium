@@ -286,6 +286,7 @@ function shouldRetryRequest(retries, err) {
 function isRetryableNetworkError(err) {
   if (err && err.code) {
     return err.code === 'ECONNABORTED' ||
+          err.code === 'ECONNREFUSED' ||
           err.code === 'ECONNRESET' ||
           err.code === 'EADDRINUSE' ||
           err.code === 'EPIPE';
@@ -296,7 +297,7 @@ function isRetryableNetworkError(err) {
 
 
 // PUBLIC API
-
+exports.Agent = http.Agent;
 exports.Executor = httpLib.Executor;
 exports.HttpClient = HttpClient;
 exports.Request = httpLib.Request;
